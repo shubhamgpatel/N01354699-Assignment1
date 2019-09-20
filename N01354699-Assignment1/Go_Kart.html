@@ -1,0 +1,259 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Assignment 1</title>
+    <style>
+        .group {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .animate_input_field {
+            font-size: 18px;
+            padding: 10px 10px 10px 5px;
+            display: block;
+            width: 100%;
+            border: none;
+            color: #aaaaaa;
+            border-bottom: 1px solid #757575;
+        }
+
+            .animate_input_field:focus {
+                outline: none;
+            }
+
+        /* active state */
+        input:focus ~ .mylabel, input:valid ~ .mylabel {
+            top: -20px;
+            font-size: 14px;
+            color: #5264AE;
+        }
+
+        /* BOTTOM BARS ================================= */
+        .bar {
+            position: relative;
+            display: block;
+            width: 100%;
+        }
+
+            .bar:before, .bar:after {
+                content: '';
+                height: 2px;
+                width: 0;
+                bottom: 1px;
+                position: absolute;
+                background: #5264AE;
+                transition: 0.9s ease all;
+                -moz-transition: 0.9s ease all;
+                -webkit-transition: 0.9s ease all;
+            }
+
+            .bar:before {
+                left: 50%;
+            }
+
+            .bar:after {
+                right: 50%;
+            }
+
+        /* active state */
+        input:focus ~ .bar:before, input:focus ~ .bar:after {
+            width: 50%;
+        }
+        /* HIGHLIGHTER using */
+        .highlight {
+            position: absolute;
+            height: 60%;
+            width: 200px;
+            top: 25%;
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+        /* active state */
+        input:focus ~ .highlight {
+            -webkit-animation: inputHighlighter 1.3s ease;
+            -moz-animation: inputHighlighter 1.3s ease;
+            animation: inputHighlighter 1.3s ease;
+        }
+
+        /* Animation for text field */
+        @-webkit-keyframes inputHighlighter {
+            from {
+                background: #5264AE;
+            }
+
+            to {
+                width: 0;
+                background: transparent;
+            }
+        }
+
+        @-moz-keyframes inputHighlighter {
+            from {
+                background: #5264AE;
+            }
+
+            to {
+                width: 0;
+                background: transparent;
+            }
+        }
+
+        @keyframes inputHighlighter {
+            from {
+                background: #5264AE;
+            }
+
+            to {
+                width: 0;
+                background: transparent;
+            }
+        }
+        /* LABEL ======================================= */
+        .mylabel {
+            color: #999;
+            font-size: 18px;
+            font-weight: normal;
+            position: absolute;
+            pointer-events: none;
+            left: 5px;
+            top: 10px;
+            transition: 0.2s ease all;
+            -moz-transition: 0.9s ease all;
+            -webkit-transition: 0.9s ease all;
+        }
+
+        .main_container {
+            box-shadow: 0px 0px 5px 0px grey;
+            width: 50%;
+            margin: 0 auto;
+            border-radius: 4px;
+            padding: 2em 3em 1em 1em;
+        }
+
+        .group p, label {
+            color: #999999;
+            text-shadow: 4px 2px 6px #8eb7d3;
+            font-family: Lucida Bright;
+        }
+
+        .group select {
+            width: 69%;
+            font-size: 16px;
+            border-width: 2px;
+            padding: 5px 0px 5px 195px;
+            border-radius: 5px;
+            color: #aaa;
+        }
+
+        .text-area {
+            resize: none;
+            border: 2px solid #a9a9a9;
+            font-size: 18px;
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        .gokart_heading {
+            text-align: center;
+            color: #5264AE;
+            text-shadow: 3px 8px 6px #aaa;
+        }
+
+        .submit {
+            width: 40%;
+            margin: auto;
+            display: block;
+            padding: 5px 0 5px 0px;
+            font-size: 14px;
+            background-color: #5a262636;
+            border-radius: 12px;
+        }
+    </style>
+</head>
+<body>
+    <form method="post" action="https://postman-echo.com/post">
+        <h1 class="gokart_heading">Go Kart Incident report</h1>
+        <div class="main_container">
+            <div class="group">
+                <input type="text" id="firstname" name="firstname" class="animate_input_field" required>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label class="mylabel">Enter your Full Name</label>
+            </div>
+            <div class="group">
+                <input type="number" id="phone_number" name="phone_number" class="animate_input_field" required>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label class="mylabel">Enter your Phone number</label>
+            </div>
+            <div class="group">
+                <p>Date of Incident</p>
+                <input type="date" name="date_incident" id="date_incident" class="animate_input_field" required>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+            </div>
+            <div class="group">
+                <p>Time of Incident</p>
+                <input type="time" name="time_incident" id="time_incident" class="animate_input_field" required>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+            </div>
+            <div class="group">
+                <strong><label>Please specify your Gender</label></strong>
+                <select id="gender" name="gender">
+                    <option value="" selected="true" disabled="true">Select Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+
+            </div>
+            <div class="group">
+                <strong><p>Type of Injury occured : </p></strong>
+                <section><input type="checkbox" name="type_injury_1" id="minor_injury" value="minor_injury"><label for="minor_injury">Minor Injury</label>&ensp;&ensp;</section>
+                <section><input type="checkbox" name="type_injury_2" id="fracture" value="fracture"><label for="fracture">Fracture</label>&ensp;&ensp;</section>
+                <section><input type="checkbox" name="type_injury_3" id="neck_pain" value="neck_pain"><label for="neck_pain">Neck Pain</label>&ensp;&ensp;</section>
+                <section><input type="checkbox" name="type_injury_4" id="muscle_spasm" value="muscle_spasm"><label for="muscle_spasm">Muscle Spasm</label>&ensp;&ensp;</section>
+                <section><input type="checkbox" name="type_injury_5" id="burns" value="burns"><label for="burns">Burns on Body Parts</label></section>
+            </div>
+            <div class="group">
+                <strong><p>Precautions : </p></strong>
+                <p> Oil and fuel were properly or not ?</p>
+                <section><input type="radio" name="oil_fuel" id="oil_fuel_yes" /><label for="oil_fuel_yes">&ensp; Yes</label></section>
+                <section><input type="radio" name="oil_fuel" id="oil_fuel_no" /><label for="oil_fuel_no">&ensp; No</label></section>
+                <p> Fire Extinguisher was present in cart or not ?</p>
+                <section><input type="radio" name="fire_extinguisher" id="fire_extinguisher_yes" /><label for="fire_extinguisher_yes">&ensp;Yes</label></section>
+                <section><input type="radio" name="fire_extinguisher" id="fire_extinguisher_no" /><label for="fire_extinguisher_no">&ensp;No</label></section>
+            </div>
+            <div class="group">
+                <label>
+                    <strong>Problem with part of kart</strong>
+                    <select name="problem_kart" id="problem_kart">
+                        <option value="" selected="true" disabled="true">Select problem</option>
+                        <option value="Steering">Steering</option>
+                        <option value="Engine">Engine</option>
+                        <option value="Brake">Brake</option>
+                        <option value="Accelerator">Accelerator</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </label>
+            </div>
+            <div class="group">
+                <p>Saftey Equipments rider was wearing : </p>
+                <section><input type="checkbox" name="helmet" id="helmet" value="helmet"><label for="helmet">Helmet </label> &ensp;</section>
+                <section><input type="checkbox" name="eye_protection" id="eye_protection" value="eye_protection"><label for="eye_protection">Eye Protection </label>&ensp;</section>
+                <section><input type="checkbox" name="neck_brace" id="neck_brace" value="neck_brace"><label for="neck_brace">Neck Brace</label> &ensp;</section>
+                <section><input type="checkbox" name="safety_belts" id="safety_belts" value="safety_belts"><label for="safety_belts">Safety Belts </label>&ensp;</section>
+                <section><input type="checkbox" name="gloves" id="gloves" value="gloves"><label for="burns">Gloves</label></section>
+                <section><input type="checkbox" name="racing_shoes" id="racing_shoes" value="racing_shoes"><label for="racing_shoes">Racing Shoes</label></section>
+            </div>
+            <textarea class="text-area" rows="5" id="summary" name="summary" placeholder=" Summary"></textarea>
+            <input type="submit" value="Submit" class="submit" />
+        </div>
+
+    </form>
+</body>
+</html>
