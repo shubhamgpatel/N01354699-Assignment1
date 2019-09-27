@@ -1,7 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="go_kart.aspx.cs" Inherits="N01354699_Assignment1.go_kart" %>
 
 <!DOCTYPE html>
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta charset="utf-8" />
@@ -10,7 +9,7 @@
     <style>
         .group {
             position: relative;
-            margin-bottom: 25px;
+            margin-bottom: 5px;
         }
 
         .animate_input_field {
@@ -19,7 +18,7 @@
             display: block;
             width: 100%;
             border: none;
-            color:#aaaaaa;
+            color:#5a5757;
             border-bottom: 1px solid #757575;
         }
 
@@ -68,9 +67,9 @@
         /* highlighter */
         .highlight {
             position: absolute;
-            height: 60%;
+            height: 43%;
             width: 200px;
-            top: 25%;
+            top: 13%;
             pointer-events: none;
             opacity: 0.5;
         }
@@ -90,7 +89,7 @@
 
             to {
                 width: 0;
-                background: transparent;
+                background: none;
             }
         }
 
@@ -117,7 +116,7 @@
         }
         /* LABEL ================== */
         .mylabel {
-            color: #999;
+            color: #5a5757;
             font-size: 18px;
             font-weight: normal;
             position: absolute;
@@ -137,9 +136,19 @@
             padding: 2em 3em 1em 1em;
         }
         .group p,label {
-            color: #999999;
+            color: #5a5757;
             text-shadow: 4px 2px 6px #8eb7d3;
             font-family: Lucida Bright;
+        }
+        .group label p strong{
+            display:block;
+        }
+        .styling_text {
+            color: #5a5757;
+            text-shadow: 4px 2px 6px #8eb7d3;
+            font-family: Lucida Bright;
+            float:left;
+            padding-top: 2%
         }
 
         .group select {
@@ -148,7 +157,9 @@
             border-width: 2px;
             padding: 5px 0px 5px 195px;
             border-radius: 5px;
-            color: #aaa;
+            color: #5a5757;
+            font-family: Lucida Bright;
+            font-weight: 700;
         }
 
         .text-area {
@@ -174,45 +185,84 @@
             background-color: #5a262636;
             border-radius: 12px;
         }
+        #displaybox {
+           margin: 2em 0 0 0px;
+           padding: 10px 0 8px 1em;
+           font-family: Cambria Math;
+           border: 2px solid #e4e1e136;
+           border-radius: 22px;
+           text-shadow: 3px 3px 5px #5264ae;
+        }
     </style> 
+
 </head>
 <body>
-    <form id="form1" method="post" action="https://postman-echo.com/post" runat="server">
+    <form id="form1" method="post" runat="server">
             <h1 class="gokart_heading">Go Kart Incident report</h1>
         <div class="main_container">
             <div class="group">
-                 <asp:TextBox ID="firstname" runat="server" class="animate_input_field" required="true"></asp:TextBox>
+                <asp:TextBox ID="victim_firstname" runat="server" required="true" class="animate_input_field"></asp:TextBox>
                 <span class="highlight"></span>
                 <span class="bar"></span>
                 <label class="mylabel">Enter your Full Name</label>
+                    <asp:RegularExpressionValidator ID="RegexpressionValidate" runat="server" 
+                       ErrorMessage="Please enter only Text" ControlToValidate="victim_firstname" 
+                       ValidationExpression="^[a-zA-Z ]*$" style="color:#f00; text-shadow:2px 4px 3px #aaa"></asp:RegularExpressionValidator>
+                <!--- https://stackoverflow.com/questions/13814340/i-need-a-regular-expression-that-only-accepts-text-characters-with-spaces-allowe 
+                    date access 23 sept 2019-->
             </div>
+                    <asp:RequiredFieldValidator runat="server" EnableClientScript= "true"
+                        ErrorMessage="Please enter your first name" ControlToValidate="victim_firstname"></asp:RequiredFieldValidator>
+           
+
             <div class="group">
-                <asp:TextBox ID="phone_number" class="animate_input_field" runat="server" TextMode="Number" required="true"></asp:TextBox>
+                <asp:TextBox ID="victim_phone_number" class="animate_input_field" runat="server" required="true"></asp:TextBox>
                 <span class="highlight"></span>
                 <span class="bar"></span>
                 <label class="mylabel">Enter your Phone number</label>
+                    <asp:RegularExpressionValidator ID="expressionValidator_phone" runat="server" 
+                       ErrorMessage="Enter valid Phone number" style="color:#f00; text-shadow:2px 4px 3px #aaa" ControlToValidate="victim_phone_number" 
+                       ValidationExpression="^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$" ></asp:RegularExpressionValidator>
             </div>
-            <div class="group">
-                <p>Date of Incident</p>
+                    <asp:RequiredFieldValidator runat="server" EnableClientScript= "true"
+                        ErrorMessage="Please enter your Phone Number" ControlToValidate="victim_phone_number"></asp:RequiredFieldValidator>
+            <!-- Used phone number validation usig regular expression -->
+                    
+
+            <!-- DATE OF INCIDENT SHOULD BE BEFORE PRESENT DATE -->
+            <span class="styling_text">Date of Incident</span>
+            <div class="group">                
                 <asp:TextBox TextMode="Date" runat="server" ID="date_incident" class="animate_input_field" required="true"></asp:TextBox>
                 <span class="highlight"></span>
                 <span class="bar"></span>
             </div>
+                 <asp:RangeValidator ID="rangeValidator_of_incident" runat="server" ControlToValidate="date_incident" Type="Date" MinimumValue="01/01/2000" 
+                    ErrorMessage="Please enter valid date" style="color:#f00; text-shadow:2px 4px 3px #aaa;margin: 0 0px 0px 0em;display: block;"></asp:RangeValidator>
+                 
+            <span class="styling_text">Time of Incident</span>   
             <div class="group">
-                <p>Time of Incident</p>
-                <asp:TextBox runat="server" TextMode="Time" min="0" max="23" ID="time_incident" class="animate_input_field" required="true"></asp:TextBox>
+                <asp:TextBox runat="server" TextMode="Time" ID="time_incident" class="animate_input_field"></asp:TextBox>
                 <span class="highlight"></span>
                 <span class="bar"></span>
             </div>
+                <asp:RequiredFieldValidator runat="server" EnableClientScript= "true"
+                    ErrorMessage="Please enter time of Incident" ControlToValidate="time_incident"></asp:RequiredFieldValidator>
+
+            <!-- VICTIM SHOULD NOT BE 1St OPTION -->
             <div class="group">
                 <strong> <label>Please specify your Gender</label></strong>
-                    <asp:DropDownList runat="server" ID="gender">
-                            <asp:ListItem Text="Select Gender" Value="" selected="true" disabled="true"></asp:ListItem>
+                    <asp:DropDownList runat="server" ID="victim_gender">
+                            <asp:ListItem Text="Select Gender" Value=""></asp:ListItem>
                             <asp:ListItem Text="Male" Value="Male"></asp:ListItem>
                             <asp:ListItem Text="Female" Value="Female"></asp:ListItem>
                             <asp:ListItem Text="Other" Value="Other"></asp:ListItem>
-                     </asp:DropDownList>
+                    </asp:DropDownList>
             </div>
+                <asp:RequiredFieldValidator runat="server" EnableClientScript="true"
+                   ControlToValidate="victim_gender" ErrorMessage="Enter select your gender"
+                   style="color:#f00; text-shadow:2px 4px 3px #aaa;margin: 0 0px 0px 0em;display:block;"> </asp:RequiredFieldValidator>
+
+            <!-- VICTIM SHOULD SELECT AT LEAST ONCE -->
             <div class="group">
                 <strong> <p>Type of Injury occured : </p></strong>
                     <asp:CheckBoxList runat="server" ID="type_of_injury">
@@ -221,48 +271,58 @@
                             <asp:ListItem Text="Neck pain" Value="neck_pain"></asp:ListItem>
                             <asp:ListItem Text="Muscle Spasm" Value="muscle_spasm"></asp:ListItem>
                             <asp:ListItem Text="Burns on Body parts" Value="burns"></asp:ListItem>
-                     </asp:CheckBoxList>
-              
+                    </asp:CheckBoxList>
             </div>
+
             <div class="group">
                <strong><p>Precautions : </p></strong> 
-
-                <p> Oil and fuel were properly filled or not ?</p>
+                <!-- VICTIM SHOULD SELECT ATLEAST ONE RADIO BUTTON-->
+                <p> Oil and fuel were properly filled ?</p>
                 <section>
-                    <asp:RadioButtonList runat="server" ID="RadioButtonList2">
-                          <asp:ListItem Text="Yes" Value="oil_fuel_yes"></asp:ListItem>
-                          <asp:ListItem Text="No " Value="oil_fuel_no"></asp:ListItem>
-                        </asp:RadioButtonList>
-                    
+                    <asp:RadioButtonList runat="server" ID="oil_fuel_radio_btn">
+                          <asp:ListItem Text="Yes" Value="properly"></asp:ListItem>
+                          <asp:ListItem Text="No " Value="not properly"></asp:ListItem>
+                    </asp:RadioButtonList>    
                 </section>
 
-                <p> Fire Extinguisher was present in cart or not ?</p>
+                    <asp:RequiredFieldValidator ID="required_oil_fuel" runat="server" 
+                         ControlToValidate="oil_fuel_radio_btn" ErrorMessage="Please select an option"
+                         style="color:#f00; text-shadow:2px 4px 3px #aaa;margin: 0 0px 0px 0em;display:block;"></asp:RequiredFieldValidator>
+
+                 <!-- VICTIM SHOULD SELECT ATLEAST ONE RADIO BUTTON-->
+                <p> Fire Extinguisher was present in cart ?</p>
                 <section>
-                         <asp:RadioButtonList runat="server" ID="RadioButtonList3">
-                            <asp:ListItem Text="Yes" Value="fire_extinguisher_yes"></asp:ListItem>
-                            <asp:ListItem Text="No " Value="fire_extinguisher_no"></asp:ListItem>
+                        <asp:RadioButtonList runat="server" ID="extinguisher_in_cart_radio">
+                            <asp:ListItem Text="Yes" Value="Yes"></asp:ListItem>
+                            <asp:ListItem Text="No " Value="No"></asp:ListItem>
                         </asp:RadioButtonList>
-                    
-                </section>
-                        
+                </section>      
+                    <asp:RequiredFieldValidator ID="extinguisher_validation" runat="server" 
+                         ControlToValidate="extinguisher_in_cart_radio" ErrorMessage="Please select an option"
+                         style="color:#f00; text-shadow:2px 4px 3px #aaa;margin: 0 0px 0px 0em;display:block;"></asp:RequiredFieldValidator>
             </div>
+            <!-- VICTIM SHOULD SELECT ANY OPTION LEAVING 1ST-->
             <div class="group">
                 <label>
-                    <strong>Problem with part of kart</strong>
+                    <p style="display:inline-block;"><strong>Problem with part of kart</strong></p>
                     <asp:DropDownList runat="server" ID="problem_kart">
-                            <asp:ListItem Text="Select problem" Value="" selected="true" disabled="true"></asp:ListItem>
+                            <asp:ListItem Text="Select problem" Value="" selected="true"></asp:ListItem>
                             <asp:ListItem Text="Steering" Value="Steering"></asp:ListItem>
                             <asp:ListItem Text="Engine" Value="Engine"></asp:ListItem>
                             <asp:ListItem Text="Brake" Value="Brake"></asp:ListItem>
                             <asp:ListItem Text="Accelerator" Value="Accelerator"></asp:ListItem>
                             <asp:ListItem Text="Other" Value="Other"></asp:ListItem>
-                        </asp:DropDownList>
+                     </asp:DropDownList>
 
                 </label>
+                    <asp:RequiredFieldValidator runat="server" EnableClientScript="true"
+                        ControlToValidate="problem_kart" ErrorMessage="Kindly select the problem of kart"
+                        style="color:#f00; text-shadow:2px 4px 3px #aaa;margin: 0 0px 0px 0em;display:block;"> </asp:RequiredFieldValidator>
             </div>
+            <!-- VICTIM SHOULD SELECT AT LEAST ONE CHECKBoX -->
             <div class="group">
                 <p>Saftey Equipments rider was wearing : </p>
-                <asp:CheckBoxList runat="server" ID="CheckBoxList1">
+                <asp:CheckBoxList runat="server" ID="safety_checklist">
                             <asp:ListItem Text="Helmet" Value="helmet"></asp:ListItem>
                             <asp:ListItem Text="Eye Protection" Value="eye_protection"></asp:ListItem>
                             <asp:ListItem Text="Neck Brace" Value="neck_brace"></asp:ListItem>
@@ -271,11 +331,20 @@
                             <asp:ListItem Text="Racing Shoes" Value="racing_shoes"></asp:ListItem>
                  </asp:CheckBoxList>
             </div>
-            <asp:TextBox  TextMode="multiline"  class="text-area" rows="5" id="summary" placeholder="Summary" runat="server"></asp:TextBox>
 
+            <asp:TextBox TextMode="multiline" class="text-area" rows="5" id="summary" placeholder="Summary(optional)" runat="server"></asp:TextBox>
+
+            <section>
+                <asp:ValidationSummary runat="server" ShowSummary="true" style="color:#f00; text-shadow:2px 4px 3px #aaa;margin: 0 0px 0px 0em;display:block;"/>
+            </section>
+                
             <input type="submit" value="Submit" class="submit" />
+           
+                  <section id="displaybox" runat="server"></section>
+             
         </div>
     </form>
+    
 </body>
 </html>
 

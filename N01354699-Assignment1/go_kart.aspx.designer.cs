@@ -22,22 +22,40 @@ namespace N01354699_Assignment1 {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// firstname control.
+        /// victim_firstname control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox firstname;
+        protected global::System.Web.UI.WebControls.TextBox victim_firstname;
         
         /// <summary>
-        /// phone_number control.
+        /// RegexpressionValidate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox phone_number;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegexpressionValidate;
+        
+        /// <summary>
+        /// victim_phone_number control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox victim_phone_number;
+        
+        /// <summary>
+        /// expressionValidator_phone control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator expressionValidator_phone;
         
         /// <summary>
         /// date_incident control.
@@ -49,6 +67,15 @@ namespace N01354699_Assignment1 {
         protected global::System.Web.UI.WebControls.TextBox date_incident;
         
         /// <summary>
+        /// rangeValidator_of_incident control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RangeValidator rangeValidator_of_incident;
+        
+        /// <summary>
         /// time_incident control.
         /// </summary>
         /// <remarks>
@@ -58,13 +85,13 @@ namespace N01354699_Assignment1 {
         protected global::System.Web.UI.WebControls.TextBox time_incident;
         
         /// <summary>
-        /// gender control.
+        /// victim_gender control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList gender;
+        protected global::System.Web.UI.WebControls.DropDownList victim_gender;
         
         /// <summary>
         /// type_of_injury control.
@@ -76,22 +103,40 @@ namespace N01354699_Assignment1 {
         protected global::System.Web.UI.WebControls.CheckBoxList type_of_injury;
         
         /// <summary>
-        /// RadioButtonList2 control.
+        /// oil_fuel_radio_btn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonList2;
+        protected global::System.Web.UI.WebControls.RadioButtonList oil_fuel_radio_btn;
         
         /// <summary>
-        /// RadioButtonList3 control.
+        /// required_oil_fuel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonList3;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator required_oil_fuel;
+        
+        /// <summary>
+        /// extinguisher_in_cart_radio control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButtonList extinguisher_in_cart_radio;
+        
+        /// <summary>
+        /// extinguisher_validation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator extinguisher_validation;
         
         /// <summary>
         /// problem_kart control.
@@ -103,13 +148,13 @@ namespace N01354699_Assignment1 {
         protected global::System.Web.UI.WebControls.DropDownList problem_kart;
         
         /// <summary>
-        /// CheckBoxList1 control.
+        /// safety_checklist control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBoxList CheckBoxList1;
+        protected global::System.Web.UI.WebControls.CheckBoxList safety_checklist;
         
         /// <summary>
         /// summary control.
@@ -119,5 +164,14 @@ namespace N01354699_Assignment1 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox summary;
+        
+        /// <summary>
+        /// displaybox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl displaybox;
     }
 }
